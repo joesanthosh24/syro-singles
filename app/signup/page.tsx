@@ -1,21 +1,30 @@
-import SignUpForm from "@/components/signupform"
+import Link from "next/link";
+import SignUpForm from "@/components/signupform";
 
 const SignUpPage = () => {
   return (
-    <div className="flex min-h-screen justify-center items-center mb-10">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
+    <div className="flex flex-1 items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-brand-900/5 sm:p-8">
+        <h2 className="text-center font-display text-3xl font-semibold text-brand-900">
+          Create your account
+        </h2>
+        <p className="mb-8 mt-2 text-center text-sm text-slate-500">
+          It only takes a minute to get started.
+        </p>
         <SignUpForm />
-         {/* Link to Login Page */}
-        <p className="mt-4 text-sm text-center text-gray-500">
-          Already have an account?{' '}
-          <a href="/login" className="text-blue-600 hover:underline">
+        {/* Link to Login Page */}
+        <p className="mt-6 text-center text-sm text-slate-500">
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            className="font-medium text-brand-600 hover:underline"
+          >
             Log in
-          </a>
+          </Link>
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUpPage
+export default SignUpPage;

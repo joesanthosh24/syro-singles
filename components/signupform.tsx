@@ -11,7 +11,7 @@ const SignUpForm = () => {
   });
 
   return (
-    <form className="space-y-3">
+    <form className="space-y-5">
       <DynamicInput
         type="text"
         id="name"
@@ -29,27 +29,30 @@ const SignUpForm = () => {
         classes="w-full"
         labelFor="email"
         labelText="Email"
+        text="you@example.com"
       />
       <DynamicInput
         type="radio"
-        name="creating-for"
+        name="created-by"
         required={true}
         labelText="Created By"
         radioBtns={[
-          { text: " Self", id: "self" },
-          { text: " Parent / Guardian", id: "parent-guardian" },
+          { text: "Self", id: "self" },
+          { text: "Parent / Guardian", id: "parent-guardian" },
         ]}
       />
       <DynamicInput
         labelFor="parish"
+        labelText="Parish"
         type="select"
         id="parish"
         classes="w-full"
         name="parish"
         required={true}
+        text="Select your parish"
         options={[
-          "St. Alphonsa Cathedral, Mississauga",
-          "St. Mother Teresa Syro Malabar, Ottawa",
+          {name: "St. Alphonsa Cathedral, Mississauga", id: 1},
+          {name: "St. Mother Teresa Syro Malabar, Ottawa", id: 2},
         ]}
       />
       <DynamicInput
@@ -61,10 +64,10 @@ const SignUpForm = () => {
         labelFor="password"
         labelText="Password"
       />
-      <div>
+      <div className="pt-2">
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-blue-700 focus:outline-none "
+          className="w-full rounded-lg bg-brand-600 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
         >
           Sign Up
         </button>
