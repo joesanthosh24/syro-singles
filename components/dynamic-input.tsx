@@ -83,6 +83,15 @@ const DynamicInput = ({
             </label>
           ))}
         </div>
+      ) : type === "textarea" ? (
+        <textarea
+          className={`${classes} ${fieldClasses}`}
+          name={name}
+          id={id}
+          required={required}
+          placeholder={text}
+          rows={5}
+        />
       ) : (
         <input
           className={`${classes} ${fieldClasses}`}
