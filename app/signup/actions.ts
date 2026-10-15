@@ -52,7 +52,14 @@ export async function signUp(
     password,
     options: {
       // Saved on the user and copied into public.profiles by a trigger
-      data: { full_name: fullName, gender, created_by: createdBy, parish },
+      data: {
+        full_name: fullName,
+        gender,
+        created_by: createdBy,
+        parish,
+        // No picture at sign-up; one can be uploaded later
+        avatar_path: null,
+      },
       emailRedirectTo: origin ? `${origin}/auth/callback` : undefined,
     },
   });
