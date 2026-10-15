@@ -24,7 +24,7 @@ const DashboardPage = async () => {
 
   const { data: profile, error } = await supabase
     .from("profiles")
-    .select("full_name, created_by, parish")
+    .select("full_name, gender, created_by, parish")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -34,6 +34,12 @@ const DashboardPage = async () => {
 
   const details = [
     { label: "Email", value: user.email },
+    {
+      label: "Gender",
+      value: profile?.gender
+        ? profile.gender.charAt(0).toUpperCase() + profile.gender.slice(1)
+        : null,
+    },
     {
       label: "Created by",
       value: profile?.created_by
