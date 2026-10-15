@@ -11,6 +11,7 @@ export type SignUpFormState = {
 };
 
 const CREATED_BY_OPTIONS = ["self", "parent-guardian"];
+const GENDER_OPTIONS = ["male", "female"];
 
 const field = (formData: FormData, name: string) => {
   const value = formData.get(name);
@@ -23,16 +24,21 @@ export async function signUp(
 ): Promise<SignUpFormState> {
   const fullName = field(formData, "name");
   const email = field(formData, "email");
+  // Stored lowercase to match the profiles.gender check constraint
+  const gender = field(formData, "gender").toLowerCase();
   const createdBy = field(formData, "created-by");
   const parish = field(formData, "parish");
   // Passwords aren't trimmed; spaces are allowed
   const password = formData.get("password");
 
-  if (!fullName || !email || !createdBy || !parish || !password) {
+  if (!fullName || !email || !gender || !createdBy || !parish || !password) {
     return { status: "error", message: "Please fill in every field." };
   }
   if (typeof password !== "string") {
     return { status: "error", message: "Please enter a valid password." };
+  }
+  if (!GENDER_OPTIONS.includes(gender)) {
+    return { status: "error", message: "Please choose a gender." };
   }
   if (!CREATED_BY_OPTIONS.includes(createdBy)) {
     return { status: "error", message: "Please choose who is creating this profile." };
@@ -46,7 +52,7 @@ export async function signUp(
     password,
     options: {
       // Saved on the user and copied into public.profiles by a trigger
-      data: { full_name: fullName, created_by: createdBy, parish },
+      data: { full_name: fullName, gender, created_by: createdBy, parish },
       emailRedirectTo: origin ? `${origin}/auth/callback` : undefined,
     },
   });

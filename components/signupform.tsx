@@ -56,6 +56,16 @@ const SignUpForm = () => {
       />
       <DynamicInput
         type="radio"
+        name="gender"
+        required={true}
+        labelText="Gender"
+        radioBtns={[
+          { text: "Male", id: "male" },
+          { text: "Female", id: "female" },
+        ]}
+      />
+      <DynamicInput
+        type="radio"
         name="created-by"
         required={true}
         labelText="Created By"
